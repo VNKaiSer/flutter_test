@@ -11,6 +11,8 @@ class ChatBubble extends StatelessWidget {
     this.makeOffer,
     this.offerValue,
     this.offerTime,
+    this.acceptedOffer,
+    this.acceptedOfferValue,
   });
   final String? message;
   final String time;
@@ -20,10 +22,84 @@ class ChatBubble extends StatelessWidget {
   final bool? makeOffer;
   final String? offerValue;
   final String? offerTime;
+  final bool? acceptedOffer;
+  final String? acceptedOfferValue;
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    // Accepted offer
+    if (acceptedOffer ?? false == true) {
+      return Container(
+        margin: const EdgeInsets.only(top: 6),
+        constraints: BoxConstraints(
+          minWidth: size.width * 0.6,
+          maxWidth: size.width * 0.6,
+        ),
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: const Color(0xFF108C43),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Stack(
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'assets/icons/congratulations.png',
+                  width: 24,
+                  height: 24,
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Text(
+                        'Accepted offer',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Text(
+                        '\$${acceptedOfferValue ?? ''}',
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w700,
+                          decoration: TextDecoration.underline,
+                          decorationColor: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            Positioned(
+              bottom: -2,
+              right: 0,
+              child: Text(
+                time,
+                style: const TextStyle(
+                  color: Color(0xFFFBFBFB),
+                  fontSize: 10,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    // Make offer
     if (makeOffer ?? false == true) {
       return Container(
         margin: const EdgeInsets.only(top: 6),
@@ -89,6 +165,7 @@ class ChatBubble extends StatelessWidget {
       );
     }
 
+    // Normal message
     return Container(
       margin: const EdgeInsets.only(top: 6),
       constraints: BoxConstraints(
@@ -138,38 +215,36 @@ class ChatBubble extends StatelessWidget {
                 ),
               ],
             ),
-          makeOffer ?? false == true
-              ? const SizedBox()
-              : Row(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: <Widget>[
-                    Expanded(
-                      child: Text(
-                        message!,
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    Align(
-                      alignment: Alignment.bottomRight,
-                      child: Transform.translate(
-                        offset: const Offset(0, 4),
-                        child: Text(
-                          time,
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 10,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: <Widget>[
+              Expanded(
+                child: Text(
+                  message!,
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
+              ),
+              const SizedBox(width: 8),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: Transform.translate(
+                  offset: const Offset(0, 4),
+                  child: Text(
+                    time,
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 10,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );

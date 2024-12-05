@@ -16,7 +16,7 @@ class ProductSale extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(18),
       child:
           Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
         Image.asset(imageUrl),
@@ -30,7 +30,8 @@ class ProductSale extends StatelessWidget {
                 style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w700,
-                    decoration: TextDecoration.underline),
+                    decoration: TextDecoration.underline,
+                    decorationThickness: 0.5),
               ),
               Text(
                 "\$$price",
