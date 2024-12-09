@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:house_test/screens/product/product_screen.dart';
 import 'chat/chat_screen.dart';
-// import 'screen_2.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -28,14 +27,14 @@ class HomeScreen extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const Scaffold(),
+                      builder: (context) => const ProductScreen(),
                     ));
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,
               ),
               child: const Text(
-                'Screen 2',
+                'Product Screen',
                 style: TextStyle(color: Colors.white),
               ),
             ),
