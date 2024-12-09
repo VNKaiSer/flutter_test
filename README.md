@@ -1,6 +1,12 @@
 # Interview Testing
 
-![alt text](./assets/images/image-1.png)
+## Chat screen
+
+![alt text](./assets/images/chat_screen.png)
+
+## Product screen
+
+![alt text](./assets/images/product_screen.png)
 
 # How to run
 
