@@ -39,6 +39,7 @@ class ChatBubble extends StatelessWidget {
 
   Widget _buildAcceptedOfferBubble(BuildContext context) {
     return _buildBubbleContainer(
+      timeColor: Colors.white,
       context,
       color: const Color(0xFF108C43),
       child: Row(
@@ -88,6 +89,7 @@ class ChatBubble extends StatelessWidget {
     return _buildBubbleContainer(
       context,
       color: Colors.black,
+      timeColor: Colors.white,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -129,23 +131,22 @@ class ChatBubble extends StatelessWidget {
   }
 
   Widget _buildNormalMessageBubble(BuildContext context) {
-    return _buildBubbleContainer(
-      context,
-      color:
-          (isMe ?? false) ? const Color(0xFFF1F1F1) : const Color(0xFFD5E4FD),
-      borderRadius: (isReply ?? false)
-          ? BorderRadius.circular(15)
-          : BorderRadius.circular(56),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          if (isReply ?? false) _buildReplyMessage(),
-          _buildMessageRow(),
-        ],
-      ),
-      time: time,
-    );
+    return _buildBubbleContainer(context,
+        color:
+            (isMe ?? false) ? const Color(0xFFF1F1F1) : const Color(0xFFD5E4FD),
+        borderRadius: (isReply ?? false)
+            ? BorderRadius.circular(15)
+            : BorderRadius.circular(56),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (isReply ?? false) _buildReplyMessage(),
+            _buildMessageRow(),
+          ],
+        ),
+        time: time,
+        timeColor: Colors.black);
   }
 
   Widget _buildReplyMessage() {
@@ -193,20 +194,6 @@ class ChatBubble extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(width: 8),
-        Align(
-          alignment: Alignment.bottomRight,
-          child: Transform.translate(
-            offset: const Offset(0, 4),
-            child: Text(
-              time,
-              style: const TextStyle(
-                color: Colors.black,
-                fontSize: 10,
-              ),
-            ),
-          ),
-        ),
       ],
     );
   }
@@ -217,6 +204,7 @@ class ChatBubble extends StatelessWidget {
     required Color color,
     BorderRadius? borderRadius,
     required String time,
+    required Color timeColor,
   }) {
     Size size = MediaQuery.of(context).size;
     return Container(
@@ -238,8 +226,8 @@ class ChatBubble extends StatelessWidget {
             right: 0,
             child: Text(
               time,
-              style: const TextStyle(
-                color: Color(0xFFFBFBFB),
+              style: TextStyle(
+                color: timeColor,
                 fontSize: 10,
                 fontWeight: FontWeight.w500,
               ),
