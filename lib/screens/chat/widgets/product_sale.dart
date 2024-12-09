@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'button_chat_sale.dart';
+import '../components/button_chat_sale.dart';
 
 class ProductSale extends StatelessWidget {
   const ProductSale({

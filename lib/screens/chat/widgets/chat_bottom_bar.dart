@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:house_test/components/suggest_message.dart';
+import 'package:house_test/screens/chat/components/suggest_message.dart';
 
 class ChatBottomBar extends StatelessWidget {
   const ChatBottomBar({

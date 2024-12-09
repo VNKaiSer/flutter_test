@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'chat_screen.dart';
+import 'chat/chat_screen.dart';
 // import 'screen_2.dart';
 
 class HomeScreen extends StatelessWidget {
